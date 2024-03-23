@@ -1,7 +1,5 @@
 package co.edu.escuelaing;
 
-import java.util.Objects;
-
 import static spark.Spark.*;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,

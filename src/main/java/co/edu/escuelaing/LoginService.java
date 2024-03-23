@@ -25,9 +25,9 @@ public class LoginService {
             res.header("Access-Control-Allow-Origin", "*");
             String usr  = req.queryParams("usr");
             String pss  = req.queryParams("pss");
-            String response = (Objects.equals(UsersDataBase.getPassword(usr), UsersDataBase.encryptSHA256(pss))) ? "logging correcto" : "logging incorrecto";
-            System.out.println(response + ": " + usr + ", " + pss + " -> " + UsersDataBase.getPassword(usr) + " -> " +  UsersDataBase.encryptSHA256(pss));
-            return SecureUrlReader.secureUrlRead("https://localhost:5001/page.html");
+            Boolean response = (Objects.equals(UsersDataBase.getPassword(usr), UsersDataBase.encryptSHA256(pss)));
+            System.out.println( "----------------->: " + usr + ", " + pss + " -> " + UsersDataBase.getPassword(usr) + " -> " +  UsersDataBase.encryptSHA256(pss));
+            return (response) ? SecureUrlReader.secureUrlRead("https://localhost:5001/page.html") : "logging incorrecto";
         });
 
     }
