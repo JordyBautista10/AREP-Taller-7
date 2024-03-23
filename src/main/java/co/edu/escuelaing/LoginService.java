@@ -7,7 +7,7 @@ import static spark.Spark.*;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
-public class Main {
+public class LoginService {
     public static void main(String[] args) {
 
         UsersDataBase.addUser("Jordy", "123456");
@@ -16,15 +16,18 @@ public class Main {
         //API: secure(keystoreFilePath, keystorePassword, truststoreFilePath,truststorePassword);
         secure("keystores/ecikeystore.p12", "123456", null, null);
 
-        port(5000);
+        port(getPort());
+
         staticFileLocation("public");
+
         get("/hello", (req, res) -> "Hello Heroku");
         get("/sing", (req, res) -> {
+            res.header("Access-Control-Allow-Origin", "*");
             String usr  = req.queryParams("usr");
             String pss  = req.queryParams("pss");
             String response = (Objects.equals(UsersDataBase.getPassword(usr), UsersDataBase.encryptSHA256(pss))) ? "logging correcto" : "logging incorrecto";
             System.out.println(response + ": " + usr + ", " + pss + " -> " + UsersDataBase.getPassword(usr) + " -> " +  UsersDataBase.encryptSHA256(pss));
-            return response;
+            return SecureUrlReader.secureUrlRead("https://localhost:5001/page.html");
         });
 
     }

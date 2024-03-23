@@ -1,6 +1,5 @@
 package co.edu.escuelaing;
 
-import java.io.UnsupportedEncodingException;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -21,18 +20,19 @@ public class UsersDataBase {
 
 
     public static String encryptSHA256(String key) {
-        String encryptedKey = null;
+        StringBuilder encryptedKey = null;
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(key.getBytes(StandardCharsets.UTF_8));
             BigInteger number = new BigInteger(1, hash);
-            encryptedKey = number.toString(16);
+            encryptedKey = new StringBuilder(number.toString(16));
             while (encryptedKey.length() < 64) {
-                encryptedKey = "0" + encryptedKey;
+                encryptedKey.insert(0, "0");
             }
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        return encryptedKey;
+        assert encryptedKey != null;
+        return encryptedKey.toString();
     }
 }

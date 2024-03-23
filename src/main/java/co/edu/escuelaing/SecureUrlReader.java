@@ -18,7 +18,7 @@ import javax.net.ssl.TrustManagerFactory;
 
 public class SecureUrlReader {
 
-    public static void main(String[] args) {
+    public static String secureUrlRead(String direction) {
         try {
 
             // Create a file and a password representation
@@ -48,44 +48,32 @@ public class SecureUrlReader {
             SSLContext.setDefault(sslContext);
 
             // We can now read this URL
-            readURL("https://localhost:5000/hello");
+            return readURL(direction);
 
-            // This one can't be read because the Java default truststore has been
-            // changed.
-            readURL("https://www.google.com");
-
-        } catch (KeyStoreException ex) {
+        } catch (KeyStoreException | IOException | NoSuchAlgorithmException | CertificateException |
+                 KeyManagementException ex) {
             Logger.getLogger(SecureUrlReader.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(SecureUrlReader.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(SecureUrlReader.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(SecureUrlReader.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (CertificateException ex) {
-            Logger.getLogger(SecureUrlReader.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (KeyManagementException ex) {
-            Logger.getLogger(SecureUrlReader.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
         }
 
     }
 
-    public static void readURL(String sitetoread) {
+    public static String readURL(String siteToRead) {
         try {
             // Crea el objeto que representa una URL2
-            URL siteURL = new URL(sitetoread);
+            URL siteURL = new URI(siteToRead).toURL();
             // Crea el objeto que URLConnection
             URLConnection urlConnection = siteURL.openConnection();
-            // Obtiene los campos del encabezado y los almacena en un estructura Map
+            // Obtiene los campos del encabezado y los almacena en una estructura Map
             Map<String, List<String>> headers = urlConnection.getHeaderFields();
-            // Obtiene una vista del mapa como conjunto de pares <K,V>
+            // Obtiene una vista del mapa como conjunto de pares <K, V>
             // para poder navegarlo
             Set<Map.Entry<String, List<String>>> entrySet = headers.entrySet();
             // Recorre la lista de campos e imprime los valores
             for (Map.Entry<String, List<String>> entry : entrySet) {
                 String headerName = entry.getKey();
 
-                //Si el nombre es nulo, significa que es la linea de estado
+                //Si el nombre es nulo, significa que es la línea de estado
                 if (headerName != null) {
                     System.out.print(headerName + ":");
                 }
@@ -93,18 +81,22 @@ public class SecureUrlReader {
                 for (String value : headerValues) {
                     System.out.print(value);
                 }
-                System.out.println("");
+                System.out.println();
             }
 
             System.out.println("-------message-body------");
             BufferedReader reader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
 
-            String inputLine = null;
+            String inputLine;
+            StringBuilder outputline = new StringBuilder();
             while ((inputLine = reader.readLine()) != null) {
+                outputline.append(inputLine);
                 System.out.println(inputLine);
             }
-        } catch (IOException x) {
-            System.err.println(x);
+            return outputline.toString();
+        } catch (IOException | URISyntaxException e) {
+            System.err.println(e.getMessage());
+            return e.getMessage();
         }
     }
 }
