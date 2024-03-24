@@ -16,8 +16,6 @@ public class WebService {
         port(getPort());
         staticFileLocation("public/page");
 
-
-        get("/page.html", (req, res) -> "/page");
     }
 
     static int getPort() {
