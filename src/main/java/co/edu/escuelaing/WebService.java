@@ -16,6 +16,7 @@ public class WebService {
         port(getPort());
         staticFileLocation("public/page");
 
+        get("/Hello", (req, res) -> "To invoke works");
     }
 
     static int getPort() {
