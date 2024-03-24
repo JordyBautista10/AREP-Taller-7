@@ -55,3 +55,16 @@ java -cp "target\classes;target\dependency\*" co.edu.escuelaing.WebService
 ~~~
 java -cp "target\classes:target\dependency\*" co.edu.escuelaing.WebService
 ~~~
+
+## Pruebas (Local)
+
+Una vez que se estén ejecutando todos los contenedores, dirígete al navegador de tu preferencia y coloca en el navegador la siguiente URL, e indica el archivo que deseas consultar, puede ser cualquiera que esté en la carpeta pública:
+
+~~~
+https://localhost:5000/index.html
+~~~
+
+Debería aparecer una página como la siguiente: 
+
+![img.png](img.png)
+

@@ -1,0 +1,50 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    padding: 40px;
+}
+
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 40px;
+}
+
+form {
+    border: 1px solid #dddddd;
+    padding: 20px;
+    background-color: #ffffff;
+    max-width: 400px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    margin-bottom: 20px; /* Agregado para separar los formularios */
+}
+
+label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #999999;
+    color: #ffffff;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555555;
+}
+
+img {
+    width: 100%; /* Ajusta la imagen al 100% del ancho de su contenedor */
+    height: auto; /* Mantiene la proporción de aspecto */
+    display: block; /* Asegura que la imagen se muestre como bloque para evitar espacios adicionales */
+    margin-bottom: 20px; /* Espacio adicional debajo de la imagen */
+}
