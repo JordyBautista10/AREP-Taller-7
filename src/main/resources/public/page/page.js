@@ -5,6 +5,6 @@ function loadGetMsg() {
             window.location.href = this.responseText;
         }
     };
-    xhttp.open("GET", "https://ec2-18-207-201-119.compute-1.amazonaws.com:5000/index.html", true);
+    xhttp.open("GET", "https://localhost:5000/index.html", true);
     xhttp.send();
 }
