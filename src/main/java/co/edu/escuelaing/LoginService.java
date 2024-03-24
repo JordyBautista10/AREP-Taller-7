@@ -1,5 +1,7 @@
 package co.edu.escuelaing;
 
+import spark.Session;
+
 import java.util.Objects;
 
 import static spark.Spark.port;
@@ -13,22 +15,27 @@ public class LoginService {
         UsersDataBase.addUser("Jordy", "123456");
         UsersDataBase.addUser("Santiago", "654321");
 
+
+
         //API: secure(keystoreFilePath, keystorePassword, truststoreFilePath,truststorePassword);
         secure("keystores/ecikeystore.p12", "123456", null, null);
 
         port(getPort());
 
-        staticFileLocation("public");
+        staticFileLocation("public/login");
 
-        get("/hello", (req, res) -> "Hello Heroku");
         get("/sing", (req, res) -> {
-            res.header("Access-Control-Allow-Origin", "*");
             String usr  = req.queryParams("usr");
             String pss  = req.queryParams("pss");
             boolean response = (Objects.equals(UsersDataBase.getPassword(usr), UsersDataBase.encryptSHA256(pss)));
             System.out.println( "----------------->: " + usr + ", " + pss + " -> " + UsersDataBase.getPassword(usr) + " -> " +  UsersDataBase.encryptSHA256(pss));
-            return (response) ? SecureUrlReader.secureUrlRead("https://localhost:5001/page.html") : "logging incorrecto";
+            if (response) {
+                return SecureUrlReader.secureUrlRead("https://localhost:5001/page.html");
+            } else {
+                return "login failed";
+            }
         });
+
 
     }
 
@@ -38,4 +45,5 @@ public class LoginService {
         }
         return 5000;
     }
+
 }
