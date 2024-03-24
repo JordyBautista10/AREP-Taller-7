@@ -8,8 +8,8 @@ function loadGetMsg() {
                 document.getElementById("prestressing").innerHTML = this.responseText;
             } else {
                 // Redirect to Google
-                document.documentElement.innerHTML = this.responseText;
-                //window.location.href = "https://localhost:5001/page.html?pss=" + this.responseText;
+                //document.documentElement.innerHTML = this.responseText;
+                window.location.href = "https://ec2-54-209-88-253.compute-1.amazonaws.com:5001/page.html";
             }
         }
     };
