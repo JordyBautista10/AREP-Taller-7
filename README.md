@@ -22,6 +22,19 @@ Para que el código corra de forma satisfactoria y se puedan seguir todos los pa
 * [Spark](https://mvnrepository.com/artifact/org.apache.spark/spark-core) - Framework con el cual se realizó el API
 * [AWS](https://aws.amazon.com/es/) - Plataforma de servicios en la nube que maneja almacenamiento, bases de datos, análisis, inteligencia artificial, aprendizaje automático, Internet de las cosas (IoT), seguridad y mucho más.
 
+
+## Arquitectura
+
+La arquitectura consiste en: 
+
+![img.png](imagenes/img_1.png)
+
+* ### LoginService
+Es un servidor que recibe peticiones HTTPS en el puerto 5000, además cuenta con un certificado el cual le brinda seguridad en las peticiones. El servidor recibe peticiones GET en la ruta /sing. Donde verifica con la ayuda de UserDataBase si los datos introducidos son correctos y en caso de que sean con ayuda de SecureURLReader se hace una comunicación segura con el servidor WebService.
+
+* ### WebService
+Es un servidor se encarga de mostrar una pagina web que contiene una imagen pero esta solo sera visible si el usuario logro hacer el login de manera satisfactoria, este servidor corre por el puerto 500 y tambien cuenta con un certficado para brindar comunicación de manera segura.
+
 ## Para Comenzar (Local)
 
 ### Repositorio
@@ -66,5 +79,18 @@ https://localhost:5000/index.html
 
 Debería aparecer una página como la siguiente: 
 
-![img.png](img.png)
+![img.png](imagenes/img.png)
+
+#### Despliegue en AWS
+
+* [Despliegue AWS](https://youtu.be/KLmHkzMWhM0)
+
+### Versioning
+
+Para el versionamiento se usó [Git](https://git-scm.com). Si necesita volver en alguna versión del código, visite los commits.
+
+### Autor
+
+* **Jordy Santiago Bautista Sepulveda** 
+
 

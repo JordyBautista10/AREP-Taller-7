@@ -13,6 +13,6 @@ function loadGetMsg() {
             }
         }
     };
-    xhttp.open("GET", "https://ec2-18-207-201-119.compute-1.amazonaws.com:5000/sing?usr=" + usr + "&pss=" + pss, true);
+    xhttp.open("GET", "https://ec2-3-81-7-253.compute-1.amazonaws.com:5000/sing?usr=" + usr + "&pss=" + pss, true);
     xhttp.send();
 }
