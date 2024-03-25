@@ -30,7 +30,7 @@ La arquitectura consiste en:
 ![img.png](imagenes/img_1.png)
 
 * ### LoginService
-Es un servidor que recibe peticiones HTTPS en el puerto 5000, además cuenta con un certificado el cual le brinda seguridad en las peticiones. El servidor recibe peticiones GET en la ruta /sing. Donde verifica con la ayuda de UserDataBase si los datos introducidos son correctos y en caso de que sean con ayuda de SecureURLReader se hace una comunicación segura con el servidor WebService.
+Es un servidor que recibe peticiones HTTPS en el puerto 5000, además cuenta con un certificado el cual le brinda seguridad en las peticiones. El servidor recibe peticiones GET en la ruta /sing. Donde verifica con la ayuda de UserDataBase si los datos introducidos son correctos y en caso de que sean con ayuda de SecureURLReader se hace una comunicación segura con el servidor WebService para obtener una página web, la cual es inaccesible desde este servicio, ya que por configuración este servicio solo tiene acceso a la carpeta login.
 
 * ### WebService
 Es un servidor se encarga de mostrar una página web que contiene una imagen, pero esta solo será visible si el usuario logro hacer el login de manera satisfactoria, este servidor corre por el puerto 5001 y también cuenta con un certificado para brindar comunicación de manera segura.
@@ -91,6 +91,8 @@ Si los datos son correctos se recargará el HTML con la información que devuelv
 
 ## Para Comenzar (AWS EC2)
 
+Cabe aclarar, que para que este proyecto funcione en la nube, hay que cambiar todas las referencias a localhost de las direcciones URL por la dirección del servidor en donde se va a correr cada servicio.  
+
 Recordemos que el servicio EC2 inicia vacío, por lo que necesita java, maven y git para poder correr este proyecto, así que se proceden a descargar estos elementos usando comandos de Linux (fedora):
 
 ~~~
@@ -133,6 +135,10 @@ java -cp "target/classes:target/dependency/*" co.edu.escuelaing.LoginService
 ### Despliegue en AWS
 
 * [Despliegue AWS](https://youtu.be/JVqdWfZmDjQ)
+
+### Escalabilidad
+
+En caso de querer implementar un nuevo servicio, se podrá usar la misma estructura de los dos ya creados (WebService y LoginService), únicamente cambiando el puerto y el comportamiento del servicio, además se sugiere(para mantener la seguridad) que los archivos estáticos para este nuevo servicio estén en una carpeta aparte tal y como están separados index y page. De ser necesaria la comunicación con nuevos servicios, esta se haría por medio del SecureUrlReader, pues garantiza la seguridad en la comunicación.
 
 ### Versioning
 
