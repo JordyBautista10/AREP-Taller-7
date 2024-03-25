@@ -83,7 +83,7 @@ Debería aparecer una página como la siguiente:
 
 #### Despliegue en AWS
 
-* [Despliegue AWS](https://youtu.be/KLmHkzMWhM0)
+* [Despliegue AWS](https://youtu.be/JVqdWfZmDjQ)
 
 ### Versioning
 

@@ -9,10 +9,10 @@ function loadGetMsg() {
             } else {
                 // Redirect to Google
                 //document.documentElement.innerHTML = this.responseText;
-                window.location.href = "https://ec2-3-85-35-250.compute-1.amazonaws.com:5001/page.html";
+                window.location.href = "https://localhost:5001/page.html";
             }
         }
     };
-    xhttp.open("GET", "https://ec2-3-81-7-253.compute-1.amazonaws.com:5000/sing?usr=" + usr + "&pss=" + pss, true);
+    xhttp.open("GET", "https://localhost:5000/sing?usr=" + usr + "&pss=" + pss, true);
     xhttp.send();
 }

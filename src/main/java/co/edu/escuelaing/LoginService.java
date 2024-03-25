@@ -30,7 +30,7 @@ public class LoginService {
             boolean response = (Objects.equals(UsersDataBase.getPassword(usr), UsersDataBase.encryptSHA256(pss)));
             System.out.println( "----------------->: " + usr + ", " + pss + " -> " + UsersDataBase.getPassword(usr) + " -> " +  UsersDataBase.encryptSHA256(pss));
             if (response) {
-                return SecureUrlReader.secureUrlRead("https://ec2-3-85-35-250.compute-1.amazonaws.com:5001/page.html");
+                return SecureUrlReader.secureUrlRead("https://localhost:5001/page.html");
             } else {
                 return "login failed";
             }
