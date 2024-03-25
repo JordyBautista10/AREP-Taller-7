@@ -5,11 +5,10 @@ function loadGetMsg() {
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             if (this.responseText == "login failed") {
-                document.getElementById("prestressing").innerHTML = this.responseText;
+                document.getElementById("prestressing").innerHTML = this.responseText;  // mostrar en el campo texto de login fallido
             } else {
-                // Redirect to Google
-                //document.documentElement.innerHTML = this.responseText;
-                window.location.href = "https://localhost:5001/page.html";
+                document.documentElement.innerHTML = this.responseText;         // Cargar la respeusta de la pagian
+                // window.location.href = "https://localhost:5001/page.html";      // redireccionar a otra pagina
             }
         }
     };

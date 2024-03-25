@@ -1,11 +1,7 @@
 package co.edu.escuelaing;
 
-import spark.Filter;
-
 import static spark.Spark.*;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class WebService {
     public static void main(String[] args) {
 
@@ -16,6 +12,7 @@ public class WebService {
         port(getPort());
         staticFileLocation("public/page");
 
+        // Si bien no tiene uso, es necesario para correr por comando esta clase de lo contrario termina la ejecucion
         get("/Hello", (req, res) -> "To invoke works");
     }
 
